@@ -48,6 +48,14 @@ return [
             'root' => storage_path('app'),
         ],
 
+        'bunnycdn' => [
+            'driver' => 'bunnycdn',
+            'host' => env('BUNNYCDN_HOST', 'storage.bunnycdn.com'),
+            'username' => env('BUNNYCDN_USERNAME'),
+            'password' => env('BUNNYCDN_PASSWORD'),
+            'url' => env('BUNNYCDN_URL'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

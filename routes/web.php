@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +15,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	$url = "";
+    return view('welcome',compact('url'));
+});
+
+Route::post('/upload', function (Request $request) {
+	if ($request->file('file')->isValid()) {
+		$result = $request->file->store('files','bunnycdn');
+		$url = Storage::disk('bunnycdn')->url($result);
+    	return view('welcome',compact('url'));
+	}
 });

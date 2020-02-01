@@ -16,24 +16,29 @@
             <div class="card">
                 <div class="card-body">
                     <h1>File Uploader</h1>
-                    <form action="/upload" method="post" enctype="multipart/form-data" class="dropzone" id="upload">
-                        @csrf
-                        <div class="fallback">
-                            <input type="file" name="file"/>
-                        </div>
-                    </form>
 
-                    <div class="form-group">
-                        <button type="submit" form="upload" class="btn btn-primary">Upload</button>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="text" value="{{$url}}" class="form-control" id="url"/>
-                    </div>
-
-                    <button class="btn btn-primary copy" data-clipboard-target="#url">Copy to clipboard</button>
                     @if($url)
+                    
+                        <div class="form-group">
+                            <input type="text" value="{{$url}}" class="form-control" id="url"/>
+                        </div>
+
+                        <button class="btn btn-primary copy" data-clipboard-target="#url">Copy to clipboard</button>
                         <a href="{{$url}}" target="_blank" class="btn btn-primary">Open File</a>
+
+                    @else
+
+                        <form action="/upload" method="post" enctype="multipart/form-data" id="upload">
+                            @csrf
+                            <div class="form-group">
+                                <input type="file" name="file" class="form-control"/>
+                            </div>
+                        </form>
+
+                        <div class="form-group">
+                            <button type="submit" form="upload" class="btn btn-primary">Upload</button>
+                        </div>
+
                     @endif
 
                 </div>
